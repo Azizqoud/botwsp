@@ -1,4 +1,4 @@
-ELEVEN_API_KEY=your_eleven_api_key
-CLOUD_NAME=your_cloud_name
-API_KEY=your_cloudinary_api_key
-API_SECRET=your_cloudinary_api_secret
+ELEVEN_API_KEY=sk_12d2d882f5467e6f1e5bcfacc71fbb7865e34ed64f2bf503
+CLOUD_NAME=dxjdclsol
+API_KEY=872929266541534
+API_SECRET=3CQMjtoCSc4ibMsrm5i-4Vq9WhM
