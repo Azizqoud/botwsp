@@ -1,0 +1,4 @@
+ELEVEN_API_KEY=your_eleven_api_key
+CLOUD_NAME=your_cloud_name
+API_KEY=your_cloudinary_api_key
+API_SECRET=your_cloudinary_api_secret

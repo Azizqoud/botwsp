@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>طلبات الاشتراك</title>
+    <style>
+        body { font-family: Tahoma, sans-serif; padding: 20px; direction: rtl; }
+        h1 { color: #444; }
+        .request { margin: 10px 0; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+        button { margin-left: 10px; }
+    </style>
+</head>
+<body>
+    <h1>طلبات الاشتراك المعلقة</h1>
+    <div id="requests"></div>
+
+    <script>
+        async function loadRequests() {
+            const res = await fetch('/admin/list');
+            const data = await res.json();
+            const container = document.getElementById('requests');
+            container.innerHTML = '';
+
+            if (data.length === 0) {
+                container.innerHTML = '<p>لا توجد طلبات حالياً.</p>';
+                return;
+            }
+
+            data.forEach(number => {
+                const div = document.createElement('div');
+                div.className = 'request';
+                div.innerHTML = `
+                    <strong>${number}</strong><br>
+                    <button onclick="respond('${number}', true)">✔️ قبول</button>
+                    <button onclick="respond('${number}', false)">❌ رفض</button>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        async function respond(number, approve) {
+            const url = approve ? '/admin/approve' : '/admin/reject';
+            await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ number })
+            });
+            loadRequests();
+        }
+
+        loadRequests();
+    </script>
+</body>
+</html>
